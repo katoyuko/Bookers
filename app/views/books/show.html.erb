@@ -1,3 +1,5 @@
+<p><%= notice %></p>
+
 <div class="show">
   <h6>Title:</h6>
   <p><%= @book.Title %></p>
@@ -7,4 +9,4 @@
 
 <!-- 編集部分-->
 <%= link_to "Edit", edit_book_path(@book), class: "edit_#{@book.id}" %>
-<a class="back" href="/books">Back</a>
+<%= link_to "back", books_path, class: "back" %>

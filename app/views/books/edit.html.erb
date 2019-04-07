@@ -1,3 +1,5 @@
+<p><%= notice %></p>
+
 <h1 class="title">Editing Book</h1>
 
 <%= form_for(@book) do |f| %>
@@ -10,4 +12,4 @@
 
 <!-- showへのリンクに誤りがある -->
 <%= link_to "Show", book_path(@book), class: "show_#{@book.id}" %>
-<a class="back" href="/books">Back</a>
+<%= link_to "back", books_path, class: "back" %>

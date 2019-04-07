@@ -8,19 +8,17 @@ class BooksController < ApplicationController
   end
 
   def index
-    # 全てのデータを取り出す
-    @books = Book.all
+    # 全てのデータをIDの若い順に取り出す
+    @books = Book.all.order(created_at: :desc)
     # 空のモデルをビューへ渡す
     @book = Book.new
   end
 
   def create
-    # ストロングパラメーターを使用
     book = Book.new(book_params)
-    # DBへ保存
-    book.save
-    # トップ画面へリダイレクト
-    redirect_to "/books"
+    if book.save
+      redirect_to book_path(book), notice: "Book was successfully created."
+    end
   end
 
   def edit
@@ -30,7 +28,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to book_path(book)
+    redirect_to book_path(book), notice: "Book was successfully updated."
   end
 
   def destroy
