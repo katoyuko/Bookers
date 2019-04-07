@@ -1,31 +1,28 @@
-<h1>Books</h1>
+<h1 class="title">Books</h1>
 
-
-<table>
+<table class="table" cellpadding="20" cellspacing="20">
     <tr>
-        <th>Title</th> <th>Body</th>
+        <th>Title</th>
+        <th>Body</th>
     </tr>
 
-<% @books.each do |book| %>
+    <% @books.each do |book| %>
     <tr>
-        <td><%= book.Title %></td> <td><%= book.Body %></td>
+        <td><%= book.Title %></td>
+        <td><%= book.Body %></td>
+        <td><%= link_to "Show", book_path(book), class: "show_#{book.id}" %></td>
+        <td><%= link_to "Edit", edit_book_path(book), class: "edit_#{book.id}" %></td>
+        <td><%= link_to "Destroy", book_path(book), class: "destroy_#{book.id}", method: :delete, data:{ confirm: "Are you sure?" } %></td>
     </tr>
-<% end %>
+    <% end %>
 
 </table>
 
+<h2 class="title">New book</h2>
 
-<!-- 詳細部分 -->
-
-<!-- 編集部分 -->
-
-<!-- 削除部分 -->
-
-
-
-<h3>New book</h3>
 <!-- form_for部分 -->
-<%= form_for(@book) do |f| %>
+<div class="form">
+  <%= form_for(@book) do |f| %>
 
     <h6>Title</h6>
     <%= f.text_field :Title %>
@@ -34,5 +31,5 @@
     <%= f.text_area :Body %>
 
     <%= f.submit "Create Book" %>
-
-<% end %>
+  <% end %>
+</div>
